@@ -16,9 +16,9 @@ class AuthService {
 
   Future<void> loginUser(String email, String password) async {
     try {
-      const String registerURL = "https://dummyjson.com/products/1";
+      const String registerURL = "https://dummyjson.com/auth/login";
       final response = await _dio
-          .post(registerURL, data: {'email': email, 'password': password});
+          .post(registerURL, data: {'username': email, 'password': password});
       if (response.statusCode == 200) {
         final token = response.data['token'] as String;
 
@@ -28,11 +28,11 @@ class AuthService {
 
         _logger.i("Token stored successfully");
       } else {
-        _logger.w("Registration Failed");
+        _logger.w("Login Failed");
       }
     } catch (error) {
       _logger.e('Error occurred: $error');
-      throw 'Login failed. Check your internet connection and try again.';
+      throw 'Login failed. $error';
     }
   }
 }
