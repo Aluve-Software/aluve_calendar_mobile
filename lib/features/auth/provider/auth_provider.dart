@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:email_validator/email_validator.dart';
 
+
 class AuthProvider extends ChangeNotifier {
   final AuthRepository _authRepository;
   final Logger _logger;
@@ -43,6 +44,7 @@ class AuthProvider extends ChangeNotifier {
       }
 
       await _authRepository.loginUser(email: email, password: password);
+
 
       _isRegistered = true;
       _isLoading = false;
