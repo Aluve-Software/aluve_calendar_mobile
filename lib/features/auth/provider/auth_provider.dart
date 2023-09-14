@@ -3,6 +3,8 @@ import 'package:logger/logger.dart';
 
 import 'package:flutter/material.dart';
 
+import 'package:email_validator/email_validator.dart';
+
 class AuthProvider extends ChangeNotifier {
   final AuthRepository _authRepository;
   final Logger _logger;
@@ -11,19 +13,46 @@ class AuthProvider extends ChangeNotifier {
       : _authRepository = AuthRepository(),
         _logger = Logger();
 
-  bool _isLoggedIn = false;
+  bool _isEmailValid = true;
 
-  bool get isLoggedIn => _isLoggedIn;
+  bool _isLoading = false;
+  bool _isRegistered = false;
+  String _errorMessage = '';
 
-  Future<void> registerUser(String email, String password) async {
+  bool get isEmailValid => _isEmailValid;
+
+  bool get isLoading => _isLoading;
+  bool get isRegistered => _isRegistered;
+  String get errorMessage => _errorMessage;
+
+  void validateEmail(String email) {
+    _isEmailValid = EmailValidator.validate(email);
+    notifyListeners();
+  }
+
+  Future<void> loginUser(String email, String password) async {
     try {
-      await _authRepository.registerUser(email: email, password: password);
+      _isLoading = true;
+      _isRegistered = false;
+      _errorMessage = '';
 
-      _isLoggedIn = true;
+      if (!_isEmailValid) {
+        _isLoading = false;
+        notifyListeners();
+        return;
+      }
 
-      notifyListeners();
+      await _authRepository.loginUser(email: email, password: password);
+
+      _isRegistered = true;
+      _isLoading = false;
     } catch (error) {
       _logger.e('Error occurred: $error');
+      _errorMessage = 'Registration failed. Please try again.';
+      _isRegistered = false;
+      _isLoading = false;
+    } finally {
+      notifyListeners();
     }
   }
 }

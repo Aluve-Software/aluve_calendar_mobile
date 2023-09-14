@@ -11,10 +11,12 @@ class AuthService {
       : _dio = Dio(),
         _logger = Logger();
 
-  Future<void> registerUser(String email, String password) async {
+  Future<void> loginUser(String email, String password) async {
+
     try {
+      const String registerURL = "https://dummyjson.com/products/1";
       final response = await _dio
-          .post('/register', data: {'email': email, 'password': password});
+          .post(registerURL, data: {'email': email, 'password': password});
       if (response.statusCode == 200) {
         _logger.i("Registration Successful");
       } else {

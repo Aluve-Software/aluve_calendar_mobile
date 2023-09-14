@@ -5,8 +5,8 @@ class AuthRepository {
 
   AuthRepository() : authService = AuthService();
 
-  Future<void> registerUser(
+  Future<void> loginUser(
       {required String email, required String password}) async {
-    await authService.registerUser(email, password);
+    await authService.loginUser(email, password);
   }
 }
