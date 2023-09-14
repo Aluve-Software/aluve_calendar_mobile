@@ -17,13 +17,13 @@ class AuthProvider extends ChangeNotifier {
   bool _isEmailValid = true;
 
   bool _isLoading = false;
-  bool _isRegistered = false;
+  bool _isLoggedIn = false;
   String _errorMessage = '';
 
   bool get isEmailValid => _isEmailValid;
 
   bool get isLoading => _isLoading;
-  bool get isRegistered => _isRegistered;
+  bool get isLoggedIn => _isLoggedIn;
   String get errorMessage => _errorMessage;
 
   void validateEmail(String email) {
@@ -34,7 +34,7 @@ class AuthProvider extends ChangeNotifier {
   Future<void> loginUser(String email, String password) async {
     try {
       _isLoading = true;
-      _isRegistered = false;
+      _isLoggedIn = false;
       _errorMessage = '';
 
       if (!_isEmailValid) {
@@ -46,12 +46,11 @@ class AuthProvider extends ChangeNotifier {
       await _authRepository.loginUser(email: email, password: password);
 
 
-      _isRegistered = true;
+      _isLoggedIn = true;
       _isLoading = false;
     } catch (error) {
       _logger.e('Error occurred: $error');
       _errorMessage = 'Registration failed. Please try again.';
-      _isRegistered = false;
       _isLoading = false;
     } finally {
       notifyListeners();
