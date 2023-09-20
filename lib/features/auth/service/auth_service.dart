@@ -3,12 +3,12 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 
-import '../token.dart';
+import '../manage_shared_preferences.dart';
 
 class AuthService {
   final Dio _dio;
   final Logger _logger;
-  final TokenManager _tokenManager = TokenManager();
+  final ManageSharedPreferences _sharedPreferences = ManageSharedPreferences();
 
   AuthService()
       : _dio = Dio(),
@@ -21,10 +21,11 @@ class AuthService {
           .post(registerURL, data: {'username': email, 'password': password});
       if (response.statusCode == 200) {
         final token = response.data['token'] as String;
+        final userData = response.data as Map<String, dynamic>;
 
         _logger.i("Login Successful, Token: $token");
 
-        await _tokenManager.storeToken(token);
+        await _sharedPreferences.storeTokenAndUserData(token, userData);
 
         _logger.i("Token stored successfully");
       } else {
