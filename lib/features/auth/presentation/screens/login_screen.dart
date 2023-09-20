@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../provider/auth_provider.dart';
 import '../widgets/button.dart';
 import '../widgets/input.dart';
 
@@ -16,6 +18,8 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
@@ -57,7 +61,6 @@ class LoginScreenState extends State<LoginScreen> {
                           fontSize: 40,
                           fontWeight: FontWeight.w700,
                           color: Color(0xff202020),
-                          // height: 66 / 40,
                         ),
                         textAlign: TextAlign.left,
                       )
@@ -133,7 +136,15 @@ class LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 40,
                 ),
-                Button(text: "Sign In", onPressed: () {}),
+                Button(
+                  text: "Sign In",
+                  onPressed: () async {
+                    final email = _emailController.text.trim();
+                    final password = _passwordController.text.trim();
+
+                    authProvider.loginUser(email, password);
+                  },
+                ),
                 const SizedBox(
                   height: 27,
                 ),
