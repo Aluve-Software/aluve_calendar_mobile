@@ -1,13 +1,13 @@
-// auth_middleware.dart
-
-import 'token.dart';
+import './manage_shared_preferences.dart';
 
 class AuthMiddleware {
-  final TokenManager _tokenManager = TokenManager();
+  final ManageSharedPreferences _sharedPreferences = ManageSharedPreferences();
 
   Future<bool> isAuthenticated() async {
-    final token = await _tokenManager.getToken();
-    return token != null && token.isNotEmpty;
+    final token = await _sharedPreferences.getAuthToken();
+    final userData = await _sharedPreferences.getUserData();
+
+    return token != null && token.isNotEmpty && userData != null;
   }
 
   Future<bool> protectRoute(String route) async {
