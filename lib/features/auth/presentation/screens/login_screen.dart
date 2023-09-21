@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../provider/auth_provider.dart';
 import '../widgets/button.dart';
 import '../widgets/input.dart';
+import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -172,10 +173,10 @@ class LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 27,
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Don’t have an account? ",
                             style: TextStyle(
                               fontSize: 16,
@@ -183,18 +184,27 @@ class LoginScreenState extends State<LoginScreen> {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          Text(
-                            " Register.",
-                            style: TextStyle(
-                              fontSize: 16,
-                              height: 22 / 16,
-                              color: Color(0XFF369FF7),
-                              fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const RegisterScreen(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              " Register.",
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 22 / 16,
+                                color: Color(0XFF369FF7),
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
-                          )
+                          ),
                         ],
-                      ),
+                      )
                     ],
                   ),
                 ),

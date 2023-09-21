@@ -1,3 +1,4 @@
+import 'package:aluve_calendar_mobile/features/auth/presentation/screens/login_screen.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -173,29 +174,40 @@ class RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(
                         height: 27,
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            "Already have an account? ",
+                          const Text(
+                            "Don’t have an account? ",
                             style: TextStyle(
                               fontSize: 16,
                               height: 22 / 16,
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          Text(
-                            " Sign in.",
-                            style: TextStyle(
-                              fontSize: 16,
-                              height: 22 / 16,
-                              color: Color(0XFF369FF7),
-                              fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const LoginScreen(), // Replace with your login screen widget
+                                ),
+                              );
+                            },
+                            child: Text(
+                              " Register.",
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 22 / 16,
+                                color: Color(0XFF369FF7),
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
-                          )
+                          ),
                         ],
                       ),
+
                     ],
                   ),
                 ),
