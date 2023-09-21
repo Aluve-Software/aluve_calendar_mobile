@@ -47,7 +47,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Welcome",
+                              "Create an",
                               style: TextStyle(
                                 fontFamily: "Inter",
                                 fontSize: 40,
@@ -57,7 +57,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                               textAlign: TextAlign.left,
                             ),
                             Text(
-                              "Back.",
+                              "account.",
                               style: TextStyle(
                                 fontFamily: "Inter",
                                 fontSize: 40,
@@ -135,8 +135,26 @@ class RegisterScreenState extends State<RegisterScreen> {
                         },
                       ),
                       const SizedBox(
+                        height: 20,
+                      ),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Confirm Password",
+                          style: TextStyle(
+                            fontFamily: "Inter",
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xff313037),
+                            height: 22 / 14,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                      const SizedBox(
                         height: 2,
                       ),
+
                       TextInputField(
                         labelText: "Enter password again",
                         controller: _passwordController,
@@ -155,7 +173,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                         height: 40,
                       ),
                       Button(
-                        text: "Sign In",
+                        text: "Register",
                         onPressed: () async {
                           final email = _emailController.text.trim();
                           final password = _passwordController.text.trim();
@@ -178,7 +196,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            "Don’t have an account? ",
+                            "Already have an account? ",
                             style: TextStyle(
                               fontSize: 16,
                               height: 22 / 16,
@@ -194,8 +212,8 @@ class RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               );
                             },
-                            child: Text(
-                              " Register.",
+                            child: const Text(
+                              " Sign in.",
                               style: TextStyle(
                                 fontSize: 16,
                                 height: 22 / 16,

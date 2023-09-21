@@ -29,7 +29,7 @@ class AuthProvider extends ChangeNotifier {
       _isLoading = false;
 
       // Notify the UI to show a Snackbar with the login error message
-      // (You can implement this part)
+
     } finally {
       notifyListeners();
     }
@@ -50,7 +50,7 @@ class AuthProvider extends ChangeNotifier {
       _isLoading = false;
 
       // Notify the UI to show a Snackbar with the registration error message
-      // (You can implement this part)
+      
     } finally {
       notifyListeners();
     }
