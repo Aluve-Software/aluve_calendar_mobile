@@ -56,4 +56,22 @@ class AuthService {
       throw 'Registration failed. $error';
     }
   }
+
+  Future<void> logoutUser() async {
+    try {
+      final response = await _dio.post("https://dummyjson.com/auth/logout");
+
+      if (response.statusCode == 200) {
+        await _sharedPreferences.deleteTokenAndUserData();
+
+        _logger.i("Logout Successful");
+      } else {
+        _logger.w("Logout Failed: Server returned ${response.statusCode}");
+        throw 'Logout failed. Server returned ${response.statusCode}';
+      }
+    } catch (error) {
+      _logger.e('Error occurred during logout: $error');
+      throw 'Logout failed. $error';
+    }
+  }
 }
