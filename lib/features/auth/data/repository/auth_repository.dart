@@ -16,4 +16,8 @@ class AuthRepository {
       required String confirmPassword}) async {
     await authService.registerUser(email, password, confirmPassword);
   }
+
+  Future<void> logoutUser() async {
+    await authService.logoutUser();
+  }
 }

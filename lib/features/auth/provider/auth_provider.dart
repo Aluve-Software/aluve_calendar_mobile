@@ -29,7 +29,6 @@ class AuthProvider extends ChangeNotifier {
       _isLoading = false;
 
       // Notify the UI to show a Snackbar with the login error message
-
     } finally {
       notifyListeners();
     }
@@ -50,7 +49,23 @@ class AuthProvider extends ChangeNotifier {
       _isLoading = false;
 
       // Notify the UI to show a Snackbar with the registration error message
-      
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  Future<void> logoutUser() async {
+    try {
+      _isLoading = true;
+      _isLoggedIn = false;
+
+      await _authRepository.logoutUser();
+      _isLoading = false;
+    } catch (error) {
+      _logger.e('Logout Error occurred: $error');
+      _isLoading = false;
+
+      // Notify the UI to show a Snackbar with the logout error message
     } finally {
       notifyListeners();
     }
