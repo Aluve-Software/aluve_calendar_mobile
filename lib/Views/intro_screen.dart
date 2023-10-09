@@ -18,6 +18,7 @@ class IntroScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: lightPurple,
                 ),
+                height: MediaQuery.of(context).size.height / 2.5,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 80),
                   child: Image.asset(
@@ -25,11 +26,10 @@ class IntroScreen extends StatelessWidget {
                     alignment: Alignment.topCenter,
                   ),
                 ),
-                height: MediaQuery.of(context).size.height / 2.5,
               ),
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15)),
                   color: white,
