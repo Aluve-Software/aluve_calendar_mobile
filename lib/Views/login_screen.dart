@@ -1,3 +1,4 @@
+import 'package:aluve_calendar_mobile/Views/Widgets/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -10,6 +11,16 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: lightPurple,
+        toolbarHeight: MediaQuery.of(context).size.height / 5,
+        centerTitle: true,
+        title: Image.asset(
+          'assets/images/Aluve_monochrome_black_1.png',
+          alignment: Alignment.topCenter,
+        ),
+      ),
+    );
   }
 }
