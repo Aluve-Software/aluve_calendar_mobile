@@ -1,3 +1,4 @@
+import 'package:aluve_calendar_mobile/Routes/routes.dart';
 import 'package:aluve_calendar_mobile/Views/Widgets/app_constants.dart';
 import 'package:aluve_calendar_mobile/Views/Widgets/app_text.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,10 @@ class IntroScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       fixedSize: Size(MediaQuery.of(context).size.width, 50)),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed(RouteManager.registerOptionsScreen);
+                  },
                   child: Text(
                     'Let\'s Go',
                     style: GoogleFonts.inter(
