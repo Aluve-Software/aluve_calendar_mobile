@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:aluve_calendar_mobile/Views/intro_screen.dart';
 import 'package:aluve_calendar_mobile/Views/register_options_screen.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/material.dart';
 class RouteManager {
   static const String introScreen = '/';
   static const String registerOptionsScreen = '/registerOptionsScreen';
+  static const String registrationScreen = '/registrationScreen';
 
   RouteManager._();
 
@@ -17,6 +20,10 @@ class RouteManager {
       case registerOptionsScreen:
         return MaterialPageRoute(
           builder: (context) => const RegisterOptionsScreen(),
+        );
+      case registrationScreen:
+        return MaterialPageRoute(
+          builder: (context) => const RegistrationScreen(),
         );
 
       default:
