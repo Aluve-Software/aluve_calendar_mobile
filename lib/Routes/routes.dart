@@ -1,3 +1,4 @@
+import 'package:aluve_calendar_mobile/Views/forgot_password_screen.dart';
 import 'package:aluve_calendar_mobile/Views/intro_screen.dart';
 import 'package:aluve_calendar_mobile/Views/login_screen.dart';
 import 'package:aluve_calendar_mobile/Views/register_options_screen.dart';
@@ -7,6 +8,7 @@ class RouteManager {
   static const String introScreen = '/';
   static const String registerOptionsScreen = '/registerOptionsScreen';
   static const String loginScreen = '/loginScreen';
+  static const String forgotPasswordScreen = '/forgotPasswordScreen';
 
   RouteManager._();
 
@@ -23,6 +25,10 @@ class RouteManager {
       case loginScreen:
         return MaterialPageRoute(
           builder: (context) => const LoginScreen(),
+        );
+      case forgotPasswordScreen:
+        return MaterialPageRoute(
+          builder: (context) => const ForgotPasswordScreen(),
         );
 
       default:
