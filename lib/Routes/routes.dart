@@ -1,8 +1,7 @@
-import 'dart:js';
-
 import 'package:aluve_calendar_mobile/Views/intro_screen.dart';
 import 'package:aluve_calendar_mobile/Views/register_options_screen.dart';
 import 'package:flutter/material.dart';
+import '../Views/registration.dart';
 
 class RouteManager {
   static const String introScreen = '/';
