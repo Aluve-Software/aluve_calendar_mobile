@@ -73,7 +73,7 @@ class IntroScreen extends StatelessWidget {
                       fixedSize: Size(MediaQuery.of(context).size.width, 50)),
                   onPressed: () {
                     Navigator.of(context)
-                        .pushNamed(RouteManager.registerOptionsScreen);
+                        .pushNamed(RouteManager.registrationScreen);
                   },
                   child: Text(
                     'Let\'s Go',
