@@ -1,3 +1,4 @@
+import 'package:aluve_calendar_mobile/Routes/routes.dart';
 import 'package:aluve_calendar_mobile/Views/Widgets/app_buttons.dart';
 import 'package:aluve_calendar_mobile/Views/Widgets/app_constants.dart';
 import 'package:aluve_calendar_mobile/Views/Widgets/app_text.dart';
@@ -65,6 +66,8 @@ class _RegisterOptionsScreenState extends State<RegisterOptionsScreen> {
                 ),
                 ButtonWithIcon(
                     onPressed: () {
+                      Navigator.of(context)
+                      .pushNamed(RouteManager.registrationScreen);
                       print(MediaQuery.of(context).size.height / 9.79);
                     },
                     text: 'Register with email',

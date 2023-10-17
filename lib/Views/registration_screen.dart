@@ -36,7 +36,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lightPurple,
-        toolbarHeight: MediaQuery.of(context).size.height / 5,
+        toolbarHeight: MediaQuery.of(context).size.height / 6,
         centerTitle: true,
         title: Image.asset(
           'assets/images/Aluve_monochrome_black_1.png',
@@ -55,15 +55,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Row(
                   children: [
                     Container(
-                      //  color: purpleGrey,
+                      // decoration: const BoxDecoration(
+                      //   borderRadius: BorderRadius.only(
+                      //     topLeft: Radius.circular(15),
+                      //     topRight: Radius.circular(15),
+                      //   ),
+                      //   color: Colors.white,
+                      // ),
                       width: MediaQuery.of(context).size.width / 2,
                       child: AppText(
                         text: 'Create an account.',
                         style: GoogleFonts.inter(
-                          fontSize: 40,
+                          fontSize: 35,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+
                     ),
                   ],
                 ),
