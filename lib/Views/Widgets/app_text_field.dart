@@ -39,26 +39,28 @@ class _AppTextFieldState extends State<AppTextField> {
             hintText: widget.hintText,
             hintStyle: GoogleFonts.inter(fontStyle: FontStyle.italic),
             suffixIcon: widget.hasTrailingIconButton == false
-            //=====if the textfield does not have a trailing icon button we display only a normal icon====
+
+                //=====if the textfield does not have a trailing icon button we display only a normal icon====
                 ? widget.hasTrailingIcon == true
-            //but if the texfield has a trailing normal icon then we display an icon otherwise we place a sixed box
-                ? Icon(
-              widget.trailingIcon,
-              color: widget.trailingIconColor,
-            )
-                : const SizedBox()
-            //====if the textfield does have a trailing icon button we display the IconButton=====
+                    //but if the texfield has a trailing normal icon then we display an icon otherwise we place a sixed box
+                    ? Icon(
+                        widget.trailingIcon,
+                        color: widget.trailingIconColor,
+                      )
+                    : const SizedBox()
+                //====if the textfield does have a trailing icon button we display the IconButton=====
                 : IconButton(
-              iconSize: 25,
-              onPressed: widget.onTrailingIconPressed,
-              icon: Icon(
-                widget.trailingIcon,
-                color: widget.trailingIconColor,
-              ),
-            ),
+                    iconSize: 25,
+                    onPressed: widget.onTrailingIconPressed,
+                    icon: Icon(
+                      widget.trailingIcon,
+                      color: widget.trailingIconColor,
+                    ),
+                  ),
             border:
-            OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+                OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
       ),
     );
   }
 }
+

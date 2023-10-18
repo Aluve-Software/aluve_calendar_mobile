@@ -103,7 +103,8 @@ class _RegisterOptionsScreenState extends State<RegisterOptionsScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(context)
+                            .pushNamed(RouteManager.loginScreen);
                       },
                       child: AppText(
                         text: 'Sign in',
