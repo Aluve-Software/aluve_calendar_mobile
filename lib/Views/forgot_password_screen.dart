@@ -119,6 +119,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             borderRadius: BorderRadius.circular(10)),
                         fixedSize: Size(MediaQuery.of(context).size.width, 50)),
                     onPressed: () {
+                      if (_resetPasswordKey.currentState!.validate()) {}
+
                       // Navigator.of(context)
                       //     .pushNamed(RouteManager.registerOptionsScreen);
                     },
