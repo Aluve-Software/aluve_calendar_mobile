@@ -99,7 +99,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         hasTrailingIcon: true,
                         hideText: false,
                         validator: (email) {
-
+                          if(email == null || email.isEmpty) {
+                            return 'Enter email';
+                          }
+                          if(!email.contains('@') || !email.contains('.')) {
+                            return 'Enter a valid email address';
+                          }
+                          return null;
                         },
                       ),
                       SizedBox(
