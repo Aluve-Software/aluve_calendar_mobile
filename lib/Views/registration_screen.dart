@@ -17,13 +17,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   late TextEditingController usernameController;
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController confirmpasswordController;
   late bool _passwordVisible = false;
+
 
   @override
   void initState() {
     usernameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    confirmpasswordController = TextEditingController();
     super.initState();
   }
 
@@ -32,6 +35,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     usernameController.dispose();
     emailController.dispose();
     passwordController.dispose();
+    confirmpasswordController.dispose();
     super.dispose();
   }
 
@@ -132,6 +136,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         },
                         hideText: _passwordVisible,
                         validator: (password) {
+                          if(password == null || password.isEmpty) {
+                            return 'Enter password';
+                          }
+                          if(!RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}').hasMatch(password)) {
+                            return '*Check password.8 characters min,50 characters max,include number,symbol,lowercase and uppercase letter.';
+                          }
+                          return null;
+
 
                         },
 
@@ -159,15 +171,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             });
                           },
                           hideText: _passwordVisible,
-                          validator: (confirm) {
+                          validator: (confirmPassword) {
+                            // if(confirmPassword == null || confirmPassword.isEmpty) {
+                            //   return 'Enter password';
+                            // }
+                            // if(confirmPassword != passwordController.text) {
+                            //   return 'Your passwords do not match';
+                            // }
+                            //
+                            // return null;
 
                           },
 
-                        //   if (password == null || password.isEmpty) {
-                        //     return 'Confirm password';
-                        //   }
-                        //   return null;
-                        // },
+
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 39.15,
