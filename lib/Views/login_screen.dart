@@ -83,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       AppTextField(
+                        controller: emailController,
                         hintText: 'Enter email',
                         trailingIcon: Icons.check,
                         trailingIconColor: green,
@@ -107,6 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       AppTextField(
+                        controller: passwordController,
                         hintText: 'Enter Password',
                         trailingIcon: _passwordVisible
                             ? Icons.visibility
@@ -130,7 +132,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(RouteManager.forgotPasswordScreen);
+                            },
                             child: AppText(
                               text: 'Forgot Password?',
                               style: GoogleFonts.inter(
