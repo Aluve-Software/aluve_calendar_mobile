@@ -26,6 +26,7 @@ class RouteManager {
       case registrationScreen:
         return MaterialPageRoute(
           builder: (context) => const RegistrationScreen(),
+        );
       case loginScreen:
         return MaterialPageRoute(
           builder: (context) => const LoginScreen(),

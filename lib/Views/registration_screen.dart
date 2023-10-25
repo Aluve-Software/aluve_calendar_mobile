@@ -14,11 +14,14 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final GlobalKey<FormState> _registerFormKey = GlobalKey<FormState>();
+  late TextEditingController usernameController;
   late TextEditingController emailController;
   late TextEditingController passwordController;
   late bool _passwordVisible = false;
+
   @override
   void initState() {
+    usernameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
     super.initState();
@@ -26,6 +29,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   void dispose() {
+    usernameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -55,13 +59,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Row(
                   children: [
                     Container(
-                      // decoration: const BoxDecoration(
-                      //   borderRadius: BorderRadius.only(
-                      //     topLeft: Radius.circular(15),
-                      //     topRight: Radius.circular(15),
-                      //   ),
-                      //   color: Colors.white,
-                      // ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20
+                        ),
+                        color: Colors.white,
+                      ),
                       width: MediaQuery.of(context).size.width / 2,
                       child: AppText(
                         text: 'Create an account.',
@@ -97,10 +99,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         hasTrailingIcon: true,
                         hideText: false,
                         validator: (email) {
-                          if (email == null || email.isEmpty) {
-                            return 'Enter email';
-                          }
-                          return null;
+
                         },
                       ),
                       SizedBox(
@@ -127,11 +126,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         },
                         hideText: _passwordVisible,
                         validator: (password) {
-                          if (password == null || password.isEmpty) {
-                            return 'Enter password';
-                          }
-                          return null;
+
                         },
+
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 39.15,
@@ -143,16 +140,28 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      AppTextField(hintText: 'Enter password again',
+                      AppTextField(
+                          hintText: 'Enter password again',
+                          trailingIcon: _passwordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                           hasTrailingIconButton: true,
                           hasTrailingIcon: true,
+                          onTrailingIconPressed: () {
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
+                          },
                           hideText: _passwordVisible,
-                        validator: (password) {
-                          if (password == null || password.isEmpty) {
-                            return 'Confirm password';
-                          }
-                          return null;
-                        },
+                          validator: (confirm) {
+
+                          },
+
+                        //   if (password == null || password.isEmpty) {
+                        //     return 'Confirm password';
+                        //   }
+                        //   return null;
+                        // },
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 39.15,
@@ -171,7 +180,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         onPressed: () {
                           _registerFormKey.currentState!.validate();
                           // Navigator.of(context)
-                          //     .pushNamed(RouteManager.registerOptionsScreen);
+                          //     .pushNamed(RouteManager.loginScreen);
                         },
                         child: Text(
                           'Register',

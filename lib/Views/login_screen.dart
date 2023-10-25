@@ -182,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pushNamed(
-                                  RouteManager.registerOptionsScreen);
+                                  RouteManager.registrationScreen);
                             },
                             child: AppText(
                               text: 'Register.',
