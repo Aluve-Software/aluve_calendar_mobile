@@ -172,14 +172,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           },
                           hideText: _passwordVisible,
                           validator: (confirmPassword) {
-                            // if(confirmPassword == null || confirmPassword.isEmpty) {
-                            //   return 'Enter password';
-                            // }
-                            // if(confirmPassword != passwordController.text) {
-                            //   return 'Your passwords do not match';
-                            // }
-                            //
-                            // return null;
+                            if(confirmPassword == null || confirmPassword.isEmpty) {
+                              return 'Enter password';
+                            }
+                            //Need to fix this part.
+                            if(confirmpasswordController.text != passwordController.text) {
+                              return 'Your passwords do not match';
+                            }
+
+                            return null;
 
                           },
 
