@@ -19,6 +19,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   late TextEditingController passwordController;
   late TextEditingController confirmpasswordController;
   late bool _passwordVisible = false;
+  late bool _confirmPasswordVisible = false;
 
 
   @override
@@ -160,22 +161,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       AppTextField(
                           hintText: 'Enter password again',
-                          trailingIcon: _passwordVisible
+                          trailingIcon: _confirmPasswordVisible
                             ? Icons.visibility
                             : Icons.visibility_off,
                           hasTrailingIconButton: true,
                           hasTrailingIcon: true,
                           onTrailingIconPressed: () {
                             setState(() {
-                              _passwordVisible = !_passwordVisible;
+                              _confirmPasswordVisible = !_confirmPasswordVisible;
                             });
                           },
-                          hideText: _passwordVisible,
+                          hideText: _confirmPasswordVisible,
                           validator: (confirmPassword) {
                             if(confirmPassword == null || confirmPassword.isEmpty) {
                               return 'Enter password';
                             }
-                            //Need to fix this part.
+                            //Need to fix this part.The "Your passwords do not match" part is not working.
                             if(confirmpasswordController.text != passwordController.text) {
                               return 'Your passwords do not match';
                             }
