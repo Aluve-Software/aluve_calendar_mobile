@@ -10,6 +10,7 @@ class AppTextField extends StatefulWidget {
   final bool hasTrailingIcon;
   final IconData? trailingIcon;
   final Color? trailingIconColor;
+
   const AppTextField({
     super.key,
     required this.hintText,

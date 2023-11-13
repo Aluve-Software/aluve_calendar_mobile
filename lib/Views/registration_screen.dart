@@ -64,11 +64,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Row(
                   children: [
                     Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20
-                        ),
-                        color: Colors.white,
-                      ),
                       width: MediaQuery.of(context).size.width / 2,
                       child: AppText(
                         text: 'Create an account.',
@@ -97,6 +92,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                       ),
                       AppTextField(
+                        controller: emailController,
                         hintText: 'Enter email',
                         trailingIcon: Icons.check,
                         trailingIconColor: green,
@@ -124,6 +120,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                       ),
                       AppTextField(
+                        controller: passwordController,
                         hintText: 'Enter Password',
                         trailingIcon: _passwordVisible
                             ? Icons.visibility
@@ -137,10 +134,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         },
                         hideText: _passwordVisible,
                         validator: (password) {
-                          if(password == null || password.isEmpty) {
+                          if(password == null || password.trim().isEmpty) {
                             return 'Enter password';
                           }
-                          if(!RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}').hasMatch(password)) {
+                          if(!RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}').hasMatch(password.trim())) {
                             return '*Check password.8 characters min,50 characters max,include number,symbol,lowercase and uppercase letter.';
                           }
                           return null;
@@ -160,6 +157,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                       ),
                       AppTextField(
+                        controller: confirmpasswordController,
                           hintText: 'Enter password again',
                           trailingIcon: _confirmPasswordVisible
                             ? Icons.visibility
@@ -177,15 +175,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               return 'Enter password';
                             }
                             //Need to fix this part.The "Your passwords do not match" part is not working.
-                            if(confirmpasswordController.text != passwordController.text) {
+                            if(confirmPassword != passwordController.text.trim()) {
                               return 'Your passwords do not match';
                             }
-
                             return null;
-
                           },
-
-
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 39.15,
