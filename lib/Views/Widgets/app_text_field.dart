@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTextField extends StatefulWidget {
   final String hintText;
+  final TextEditingController controller;
   final bool hideText;
   final String? Function(String?)? validator;
   final bool hasTrailingIconButton;
@@ -21,6 +22,7 @@ class AppTextField extends StatefulWidget {
     this.onTrailingIconPressed,
     required this.hideText,
     required this.validator,
+    required this.controller,
   });
 
   @override
@@ -33,6 +35,7 @@ class _AppTextFieldState extends State<AppTextField> {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: TextFormField(
+        controller: widget.controller,
         obscureText: widget.hideText,
         validator: widget.validator,
         style: GoogleFonts.inter(fontSize: 14),
