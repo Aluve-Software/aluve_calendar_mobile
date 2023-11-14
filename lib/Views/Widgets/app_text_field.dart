@@ -11,6 +11,7 @@ class AppTextField extends StatefulWidget {
   final bool hasTrailingIcon;
   final IconData? trailingIcon;
   final Color? trailingIconColor;
+
   const AppTextField({
     super.key,
     required this.hintText,
@@ -42,6 +43,7 @@ class _AppTextFieldState extends State<AppTextField> {
             hintText: widget.hintText,
             hintStyle: GoogleFonts.inter(fontStyle: FontStyle.italic),
             suffixIcon: widget.hasTrailingIconButton == false
+
                 //=====if the textfield does not have a trailing icon button we display only a normal icon====
                 ? widget.hasTrailingIcon == true
                     //but if the texfield has a trailing normal icon then we display an icon otherwise we place a sixed box
@@ -65,3 +67,4 @@ class _AppTextFieldState extends State<AppTextField> {
     );
   }
 }
+

@@ -5,29 +5,38 @@ import 'package:aluve_calendar_mobile/Views/Widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   final GlobalKey<FormState> _registerFormKey = GlobalKey<FormState>();
+  late TextEditingController usernameController;
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController confirmpasswordController;
   late bool _passwordVisible = false;
+  late bool _confirmPasswordVisible = false;
+
+
   @override
   void initState() {
+    usernameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    confirmpasswordController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
+    usernameController.dispose();
     emailController.dispose();
     passwordController.dispose();
+    confirmpasswordController.dispose();
     super.dispose();
   }
 
@@ -36,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: lightPurple,
-        toolbarHeight: MediaQuery.of(context).size.height / 5,
+        toolbarHeight: MediaQuery.of(context).size.height / 6,
         centerTitle: true,
         title: Image.asset(
           'assets/images/Aluve_monochrome_black_1.png',
@@ -55,15 +64,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   children: [
                     Container(
-                      //  color: purpleGrey,
                       width: MediaQuery.of(context).size.width / 2,
                       child: AppText(
-                        text: 'Welcome Back.',
+                        text: 'Create an account.',
                         style: GoogleFonts.inter(
-                          fontSize: 40,
+                          fontSize: 35,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+
                     ),
                   ],
                 ),
@@ -91,8 +100,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         hasTrailingIcon: true,
                         hideText: false,
                         validator: (email) {
-                          if (email == null || email.isEmpty) {
+                          if(email == null || email.isEmpty) {
                             return 'Enter email';
+                          }
+                          if(!email.contains('@') || !email.contains('.')) {
+                            return 'Enter a valid email address';
                           }
                           return null;
                         },
@@ -122,30 +134,55 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         hideText: _passwordVisible,
                         validator: (password) {
-                          if (password == null || password.isEmpty) {
+                          if(password == null || password.trim().isEmpty) {
                             return 'Enter password';
                           }
+                          if(!RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}').hasMatch(password.trim())) {
+                            return '*Check password.8 characters min,50 characters max,include number,symbol,lowercase and uppercase letter.';
+                          }
                           return null;
+
+
                         },
+
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(RouteManager.forgotPasswordScreen);
-                            },
-                            child: AppText(
-                              text: 'Forgot Password?',
-                              style: GoogleFonts.inter(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: blue1,
-                              ),
-                            ),
-                          ),
-                        ],
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 39.15,
+                      ),
+                      AppText(
+                        text: 'Confirm Password',
+                        style: GoogleFonts.inter(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      AppTextField(
+                        controller: confirmpasswordController,
+                          hintText: 'Enter password again',
+                          trailingIcon: _confirmPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                          hasTrailingIconButton: true,
+                          hasTrailingIcon: true,
+                          onTrailingIconPressed: () {
+                            setState(() {
+                              _confirmPasswordVisible = !_confirmPasswordVisible;
+                            });
+                          },
+                          hideText: _confirmPasswordVisible,
+                          validator: (confirmPassword) {
+                            if(confirmPassword == null || confirmPassword.isEmpty) {
+                              return 'Enter password';
+                            }
+                            //Need to fix this part.The "Your passwords do not match" part is not working.
+                            if(confirmPassword != passwordController.text.trim()) {
+                              return 'Your passwords do not match';
+                            }
+                            return null;
+                          },
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 39.15,
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 39.15,
@@ -157,14 +194,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             fixedSize:
-                                Size(MediaQuery.of(context).size.width, 50)),
+                            Size(MediaQuery.of(context).size.width, 50)),
                         onPressed: () {
                           _registerFormKey.currentState!.validate();
                           // Navigator.of(context)
-                          //     .pushNamed(RouteManager.registerOptionsScreen);
+                          //     .pushNamed(RouteManager.loginScreen);
                         },
                         child: Text(
-                          'Sign In',
+                          'Register',
                           style: GoogleFonts.inter(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -178,7 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Don't have an account?",
+                            "Already have an account?",
                             style: GoogleFonts.inter(
                                 color: black,
                                 fontSize: 16,
@@ -187,10 +224,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pushNamed(
-                                  RouteManager.registrationScreen);
+                                  RouteManager.registerOptionsScreen);
                             },
                             child: AppText(
-                              text: 'Register.',
+                              text: 'Sign in.',
                               style: GoogleFonts.inter(
                                   color: blue2,
                                   fontSize: 16,

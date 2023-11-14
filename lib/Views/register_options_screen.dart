@@ -66,6 +66,8 @@ class _RegisterOptionsScreenState extends State<RegisterOptionsScreen> {
                 ),
                 ButtonWithIcon(
                     onPressed: () {
+                      Navigator.of(context)
+                      .pushNamed(RouteManager.registrationScreen);
                       print(MediaQuery.of(context).size.height / 9.79);
                     },
                     text: 'Register with email',
